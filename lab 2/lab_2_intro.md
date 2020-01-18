@@ -7,10 +7,7 @@ output:
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-library("jpeg")
-```
+
 
 ## Setup
 1. Login to the lab computer.  
@@ -25,25 +22,18 @@ library("jpeg")
 - Take 5 minutes or so to double check that your homework is complete and uploaded.
 - Suggestion: have a lab partner have a look at your repository. 
 - Have a look at Lily's solution.  
-```{r}
-blackjack <- c(140, -20, 70, -120, 240, NA, NA)
-roulette <- c(60, 50, 120, -300, 10, NA, NA)
-days <- c("M", "Tu","W","Th","F","S","Su")
-names(blackjack) <- days
-names(roulette) <- days
-days <- c("M", "Tu","W","Th","F","S","Su")
-names(blackjack) <- days
-blackjack <- c(140, -20, 70, -120, 240, NA, NA)
-new_blackjack <- na.omit(blackjack)
-roulette <- c(60, 50, 120, -300, 10, NA, NA)
-new_roulette <- na.omit(roulette)
-```
 
-```{r echo=TRUE}
+
+
+```r
 b <- sum(new_blackjack)
 r <- sum(new_roulette)
 if (b < r) {print("roulette")} 
 if (r < b) {print("blackjack")}
+```
+
+```
+## [1] "blackjack"
 ```
 
 ## Branches
@@ -61,14 +51,24 @@ if (r < b) {print("blackjack")}
 ## Vectors
 - I think of vectors as rows in a spreadsheet.  
 - R makes guesses on the class of data in a vector, but may be wrong.  
-```{r echo=TRUE}
+
+```r
 new_vector <- c(2, 4, 6) #what if these were sample numbers?
 class(new_vector)
 ```
 
-```{r echo=TRUE}
+```
+## [1] "numeric"
+```
+
+
+```r
 new_vector <- as.factor(new_vector)
 class(new_vector)
+```
+
+```
+## [1] "factor"
 ```
 
 ## Last Logistics
