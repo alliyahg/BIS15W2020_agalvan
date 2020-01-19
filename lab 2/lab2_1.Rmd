@@ -97,9 +97,17 @@ all_harry_potter_matrix
 ```
 
 ## Practice
-1. What are the total earnings for each of the movies?  
+1. What are the total earnings for each of the regions?  
+```{r}
+Total <- colSums (all_harry_potter_matrix)
+Total
+```
 
 2. Add this information to the data matrix. Hint: you are adding a row, not a column.  
+```{r}
+all_harry_potter_matrix <- rbind (all_harry_potter_matrix, Total)
+all_harry_potter_matrix
+```
 
 ## Select elements in a data matrix
 The same methods of selecting elements in a vector apply to data matrices. We use `[]`. The following selects the value in the first column, second row.
@@ -133,6 +141,13 @@ spring_8 <- c(36.80, 36.45, 33.15)
 
 1. Build a data matrix that has the springs as rows and the columns as scientists.  
 ```{r}
+springs_cool <- c(spring_1, spring_2, spring_3, spring_4, spring_5, spring_6, spring_7, spring_8)
+temp_hot_springs <- matrix(springs_cool, nrow= 8, byrow= T)
+scientists <- c("Jill", "Steve", "Susan")
+springs <- c("spring_1", "spring_2", "spring_3", "spring_4", "spring_5", "spring_6", "spring_7", "spring_8")
+colnames(temp_hot_springs) <- scientists
+rownames(temp_hot_springs) <- springs
+temp_hot_springs
 
 ```
 
@@ -141,22 +156,29 @@ Let's name the rows and columns. Start by making two new vectors with the names.
 ```{r}
 scientists <- c("Jill", "Steve", "Susan")
 springs <- c("Bluebell Spring", "Opal Spring", "Riverside Spring", "Too Hot Spring", "Mystery Spring", "Emerald Spring", "Black Spring", "Pearl Spring")
+rownames(temp_hot_springs) <- springs
+temp_hot_springs
 ```
 
 2. Use `colnames()` and `rownames()` to name the columns and rows.  
 ```{r}
-
+colnames(temp_hot_springs) <- scientists
+rownames(temp_hot_springs) <- springs
+temp_hot_springs
 ```
 
-Calculate the mean temperature of all three springs. Notice the command `rowMeans`.
+Calculate the mean temperature for each spring. Notice the command `rowMeans`.
 ```{r}
-#mean_vector <- rowMeans(springs_matrix)
+rowMeans(temp_hot_springs)
+#mean_vector <- rowMeans(matrix, temp_hot_springs)
 #mean_vector
 ```
 
 3. Add `mean_vector` as a new column.  
 ```{r}
 
+new_temp_springs <- cbind(temp_hot_springs, rowMeans(temp_hot_springs))
+new_temp_springs
 ```
 
 
