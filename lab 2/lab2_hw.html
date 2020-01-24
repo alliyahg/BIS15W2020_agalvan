@@ -428,18 +428,230 @@ summary {
 ## 10 Roe &lt;U+2026&gt; Capr&lt;U+2026&gt; herbi Arti&lt;U+2026&gt; lc                   3        NA        NA      21  
 ## # &lt;U+2026&gt; with 73 more rows, and 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
 <ol style="list-style-type: decimal">
-<li><p>From which publication are these data taken from? Don’t do an internet search; show the code that you would use to find out in R.</p></li>
-<li><p>Put these data into a new object <code>sleep</code>. Make sure they are organized as a data frame.</p></li>
-<li><p>Show a list of the column names is this data frame.</p></li>
-<li><p>Use <code>glimpse()</code> to summarize the data in <code>sleep</code>.</p></li>
-<li><p>Use <code>summary()</code> to summarize the data in <code>sleep</code>.</p></li>
-<li><p>Print out the first column of the data frame and then print out the first row.</p></li>
-<li><p>We are interested in two groups; small and large mammals. Let’s define small as less than or equal to 1kg body weight and large as greater than or equal to 200kg body weight. Make two new dataframes (large and small) based on these parameters.</p></li>
-<li><p>What is the mean weight for both the large and small mammals?</p></li>
-<li><p>Let’s try to figure out if large mammals sleep, on average, longer than small mammals. What is the average sleep duration for large mammals as we have defined them?</p></li>
-<li><p>What is the average sleep duration for small mammals as we have defined them?</p></li>
-<li><p>Which animals are the sleepiest? Which sleep least 18 hours per day?</p></li>
+<li>From which publication are these data taken from? Don’t do an internet search; show the code that you would use to find out in R.</li>
 </ol>
+<pre class="r"><code>?msleep</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Put these data into a new object <code>sleep</code>. Make sure they are organized as a data frame.</li>
+</ol>
+<pre class="r"><code>sleep &lt;- msleep
+sleep</code></pre>
+<pre><code>## # A tibble: 83 x 11
+##    name  genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1 Chee&lt;U+2026&gt; Acin&lt;U+2026&gt; carni Carn&lt;U+2026&gt; lc                  12.1      NA        NA      11.9
+##  2 Owl &lt;U+2026&gt; Aotus omni  Prim&lt;U+2026&gt; &lt;NA&gt;                17         1.8      NA       7  
+##  3 Moun&lt;U+2026&gt; Aplo&lt;U+2026&gt; herbi Rode&lt;U+2026&gt; nt                  14.4       2.4      NA       9.6
+##  4 Grea&lt;U+2026&gt; Blar&lt;U+2026&gt; omni  Sori&lt;U+2026&gt; lc                  14.9       2.3       0.133   9.1
+##  5 Cow   Bos   herbi Arti&lt;U+2026&gt; domesticated         4         0.7       0.667  20  
+##  6 Thre&lt;U+2026&gt; Brad&lt;U+2026&gt; herbi Pilo&lt;U+2026&gt; &lt;NA&gt;                14.4       2.2       0.767   9.6
+##  7 Nort&lt;U+2026&gt; Call&lt;U+2026&gt; carni Carn&lt;U+2026&gt; vu                   8.7       1.4       0.383  15.3
+##  8 Vesp&lt;U+2026&gt; Calo&lt;U+2026&gt; &lt;NA&gt;  Rode&lt;U+2026&gt; &lt;NA&gt;                 7        NA        NA      17  
+##  9 Dog   Canis carni Carn&lt;U+2026&gt; domesticated        10.1       2.9       0.333  13.9
+## 10 Roe &lt;U+2026&gt; Capr&lt;U+2026&gt; herbi Arti&lt;U+2026&gt; lc                   3        NA        NA      21  
+## # &lt;U+2026&gt; with 73 more rows, and 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Show a list of the column names is this data frame.</li>
+</ol>
+<pre class="r"><code>names(sleep)</code></pre>
+<pre><code>##  [1] &quot;name&quot;         &quot;genus&quot;        &quot;vore&quot;         &quot;order&quot;        &quot;conservation&quot;
+##  [6] &quot;sleep_total&quot;  &quot;sleep_rem&quot;    &quot;sleep_cycle&quot;  &quot;awake&quot;        &quot;brainwt&quot;     
+## [11] &quot;bodywt&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Use <code>glimpse()</code> to summarize the data in <code>sleep</code>.</li>
+</ol>
+<pre class="r"><code>glimpse(sleep)</code></pre>
+<pre><code>## Observations: 83
+## Variables: 11
+## $ name         &lt;chr&gt; &quot;Cheetah&quot;, &quot;Owl monkey&quot;, &quot;Mountain beaver&quot;, &quot;Greater sho&lt;U+2026&gt;
+## $ genus        &lt;chr&gt; &quot;Acinonyx&quot;, &quot;Aotus&quot;, &quot;Aplodontia&quot;, &quot;Blarina&quot;, &quot;Bos&quot;, &quot;Br&lt;U+2026&gt;
+## $ vore         &lt;chr&gt; &quot;carni&quot;, &quot;omni&quot;, &quot;herbi&quot;, &quot;omni&quot;, &quot;herbi&quot;, &quot;herbi&quot;, &quot;car&lt;U+2026&gt;
+## $ order        &lt;chr&gt; &quot;Carnivora&quot;, &quot;Primates&quot;, &quot;Rodentia&quot;, &quot;Soricomorpha&quot;, &quot;Ar&lt;U+2026&gt;
+## $ conservation &lt;chr&gt; &quot;lc&quot;, NA, &quot;nt&quot;, &quot;lc&quot;, &quot;domesticated&quot;, NA, &quot;vu&quot;, NA, &quot;dom&lt;U+2026&gt;
+## $ sleep_total  &lt;dbl&gt; 12.1, 17.0, 14.4, 14.9, 4.0, 14.4, 8.7, 7.0, 10.1, 3.0, &lt;U+2026&gt;
+## $ sleep_rem    &lt;dbl&gt; NA, 1.8, 2.4, 2.3, 0.7, 2.2, 1.4, NA, 2.9, NA, 0.6, 0.8,&lt;U+2026&gt;
+## $ sleep_cycle  &lt;dbl&gt; NA, NA, NA, 0.1333333, 0.6666667, 0.7666667, 0.3833333, &lt;U+2026&gt;
+## $ awake        &lt;dbl&gt; 11.9, 7.0, 9.6, 9.1, 20.0, 9.6, 15.3, 17.0, 13.9, 21.0, &lt;U+2026&gt;
+## $ brainwt      &lt;dbl&gt; NA, 0.01550, NA, 0.00029, 0.42300, NA, NA, NA, 0.07000, &lt;U+2026&gt;
+## $ bodywt       &lt;dbl&gt; 50.000, 0.480, 1.350, 0.019, 600.000, 3.850, 20.490, 0.0&lt;U+2026&gt;</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Use <code>summary()</code> to summarize the data in <code>sleep</code>.</li>
+</ol>
+<pre class="r"><code>summary(sleep)</code></pre>
+<pre><code>##      name              genus               vore              order          
+##  Length:83          Length:83          Length:83          Length:83         
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##  conservation        sleep_total      sleep_rem      sleep_cycle    
+##  Length:83          Min.   : 1.90   Min.   :0.100   Min.   :0.1167  
+##  Class :character   1st Qu.: 7.85   1st Qu.:0.900   1st Qu.:0.1833  
+##  Mode  :character   Median :10.10   Median :1.500   Median :0.3333  
+##                     Mean   :10.43   Mean   :1.875   Mean   :0.4396  
+##                     3rd Qu.:13.75   3rd Qu.:2.400   3rd Qu.:0.5792  
+##                     Max.   :19.90   Max.   :6.600   Max.   :1.5000  
+##                                     NA's   :22      NA's   :51      
+##      awake          brainwt            bodywt        
+##  Min.   : 4.10   Min.   :0.00014   Min.   :   0.005  
+##  1st Qu.:10.25   1st Qu.:0.00290   1st Qu.:   0.174  
+##  Median :13.90   Median :0.01240   Median :   1.670  
+##  Mean   :13.57   Mean   :0.28158   Mean   : 166.136  
+##  3rd Qu.:16.15   3rd Qu.:0.12550   3rd Qu.:  41.750  
+##  Max.   :22.10   Max.   :5.71200   Max.   :6654.000  
+##                  NA's   :27</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Print out the first column of the data frame and then print out the first row.</li>
+</ol>
+<pre class="r"><code>sleep[,1]</code></pre>
+<pre><code>## # A tibble: 83 x 1
+##    name                      
+##    &lt;chr&gt;                     
+##  1 Cheetah                   
+##  2 Owl monkey                
+##  3 Mountain beaver           
+##  4 Greater short-tailed shrew
+##  5 Cow                       
+##  6 Three-toed sloth          
+##  7 Northern fur seal         
+##  8 Vesper mouse              
+##  9 Dog                       
+## 10 Roe deer                  
+## # &lt;U+2026&gt; with 73 more rows</code></pre>
+<pre class="r"><code>sleep[1,]</code></pre>
+<pre><code>## # A tibble: 1 x 11
+##   name  genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Chee&lt;U+2026&gt; Acin&lt;U+2026&gt; carni Carn&lt;U+2026&gt; lc                  12.1        NA          NA  11.9
+## # &lt;U+2026&gt; with 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>We are interested in two groups; small and large mammals. Let’s define small as less than or equal to 1kg body weight and large as greater than or equal to 200kg body weight. Make two new dataframes (large and small) based on these parameters.<br />
+STUDENT NOTE: not all mammals included within these specific parameters.</li>
+</ol>
+<pre class="r"><code>large &lt;- filter(sleep, bodywt &gt;= 200)
+large</code></pre>
+<pre><code>## # A tibble: 7 x 11
+##   name  genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Cow   Bos   herbi Arti&lt;U+2026&gt; domesticated         4         0.7       0.667  20  
+## 2 Asia&lt;U+2026&gt; Elep&lt;U+2026&gt; herbi Prob&lt;U+2026&gt; en                   3.9      NA        NA      20.1
+## 3 Horse Equus herbi Peri&lt;U+2026&gt; domesticated         2.9       0.6       1      21.1
+## 4 Gira&lt;U+2026&gt; Gira&lt;U+2026&gt; herbi Arti&lt;U+2026&gt; cd                   1.9       0.4      NA      22.1
+## 5 Pilo&lt;U+2026&gt; Glob&lt;U+2026&gt; carni Ceta&lt;U+2026&gt; cd                   2.7       0.1      NA      21.4
+## 6 Afri&lt;U+2026&gt; Loxo&lt;U+2026&gt; herbi Prob&lt;U+2026&gt; vu                   3.3      NA        NA      20.7
+## 7 Braz&lt;U+2026&gt; Tapi&lt;U+2026&gt; herbi Peri&lt;U+2026&gt; vu                   4.4       1         0.9    19.6
+## # &lt;U+2026&gt; with 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+<pre class="r"><code>small &lt;- filter(sleep, bodywt &lt;= 1)
+small</code></pre>
+<pre><code>## # A tibble: 36 x 11
+##    name  genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1 Owl &lt;U+2026&gt; Aotus omni  Prim&lt;U+2026&gt; &lt;NA&gt;                17         1.8      NA       7  
+##  2 Grea&lt;U+2026&gt; Blar&lt;U+2026&gt; omni  Sori&lt;U+2026&gt; lc                  14.9       2.3       0.133   9.1
+##  3 Vesp&lt;U+2026&gt; Calo&lt;U+2026&gt; &lt;NA&gt;  Rode&lt;U+2026&gt; &lt;NA&gt;                 7        NA        NA      17  
+##  4 Guin&lt;U+2026&gt; Cavis herbi Rode&lt;U+2026&gt; domesticated         9.4       0.8       0.217  14.6
+##  5 Chin&lt;U+2026&gt; Chin&lt;U+2026&gt; herbi Rode&lt;U+2026&gt; domesticated        12.5       1.5       0.117  11.5
+##  6 Star&lt;U+2026&gt; Cond&lt;U+2026&gt; omni  Sori&lt;U+2026&gt; lc                  10.3       2.2      NA      13.7
+##  7 Afri&lt;U+2026&gt; Cric&lt;U+2026&gt; omni  Rode&lt;U+2026&gt; &lt;NA&gt;                 8.3       2        NA      15.7
+##  8 Less&lt;U+2026&gt; Cryp&lt;U+2026&gt; omni  Sori&lt;U+2026&gt; lc                   9.1       1.4       0.15   14.9
+##  9 Big &lt;U+2026&gt; Epte&lt;U+2026&gt; inse&lt;U+2026&gt; Chir&lt;U+2026&gt; lc                  19.7       3.9       0.117   4.3
+## 10 Euro&lt;U+2026&gt; Erin&lt;U+2026&gt; omni  Erin&lt;U+2026&gt; lc                  10.1       3.5       0.283  13.9
+## # &lt;U+2026&gt; with 26 more rows, and 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>What is the mean weight for both the large and small mammals?</li>
+</ol>
+<p>Column 11 is bodywt.</p>
+<pre class="r"><code>large[,11]</code></pre>
+<pre><code>## # A tibble: 7 x 1
+##   bodywt
+##    &lt;dbl&gt;
+## 1   600 
+## 2  2547 
+## 3   521 
+## 4   900.
+## 5   800 
+## 6  6654 
+## 7   208.</code></pre>
+<pre class="r"><code>colMeans(large[,11])</code></pre>
+<pre><code>##   bodywt 
+## 1747.071</code></pre>
+<pre class="r"><code>small[,11]</code></pre>
+<pre><code>## # A tibble: 36 x 1
+##    bodywt
+##     &lt;dbl&gt;
+##  1  0.48 
+##  2  0.019
+##  3  0.045
+##  4  0.728
+##  5  0.42 
+##  6  0.06 
+##  7  1    
+##  8  0.005
+##  9  0.023
+## 10  0.77 
+## # &lt;U+2026&gt; with 26 more rows</code></pre>
+<pre class="r"><code>colMeans(small[,11])</code></pre>
+<pre><code>##    bodywt 
+## 0.2596667</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Let’s try to figure out if large mammals sleep, on average, longer than small mammals. What is the average sleep duration for large mammals as we have defined them?</li>
+</ol>
+<p>Column 6 is sleep_total.</p>
+<pre class="r"><code>large[,6]</code></pre>
+<pre><code>## # A tibble: 7 x 1
+##   sleep_total
+##         &lt;dbl&gt;
+## 1         4  
+## 2         3.9
+## 3         2.9
+## 4         1.9
+## 5         2.7
+## 6         3.3
+## 7         4.4</code></pre>
+<pre class="r"><code>colMeans(large[,6])</code></pre>
+<pre><code>## sleep_total 
+##         3.3</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>What is the average sleep duration for small mammals as we have defined them?</li>
+</ol>
+<pre class="r"><code>small[,6]</code></pre>
+<pre><code>## # A tibble: 36 x 1
+##    sleep_total
+##          &lt;dbl&gt;
+##  1        17  
+##  2        14.9
+##  3         7  
+##  4         9.4
+##  5        12.5
+##  6        10.3
+##  7         8.3
+##  8         9.1
+##  9        19.7
+## 10        10.1
+## # &lt;U+2026&gt; with 26 more rows</code></pre>
+<pre class="r"><code>colMeans(small[,6])</code></pre>
+<pre><code>## sleep_total 
+##    12.65833</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Which animals are the sleepiest? Which sleep at least 18 hours per day?</li>
+</ol>
+<pre class="r"><code>sleepiest &lt;- filter(sleep, sleep_total &gt;=18)
+sleepiest</code></pre>
+<pre><code>## # A tibble: 5 x 11
+##   name  genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Nort&lt;U+2026&gt; Dide&lt;U+2026&gt; omni  Dide&lt;U+2026&gt; lc                  18         4.9       0.333   6  
+## 2 Big &lt;U+2026&gt; Epte&lt;U+2026&gt; inse&lt;U+2026&gt; Chir&lt;U+2026&gt; lc                  19.7       3.9       0.117   4.3
+## 3 Thic&lt;U+2026&gt; Lutr&lt;U+2026&gt; carni Dide&lt;U+2026&gt; lc                  19.4       6.6      NA       4.6
+## 4 Litt&lt;U+2026&gt; Myot&lt;U+2026&gt; inse&lt;U+2026&gt; Chir&lt;U+2026&gt; &lt;NA&gt;                19.9       2         0.2     4.1
+## 5 Gian&lt;U+2026&gt; Prio&lt;U+2026&gt; inse&lt;U+2026&gt; Cing&lt;U+2026&gt; en                  18.1       6.1      NA       5.9
+## # &lt;U+2026&gt; with 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+<pre class="r"><code>sleepiest$name &lt;- as.factor(sleepiest$name)
+levels(sleepiest$name)</code></pre>
+<pre><code>## [1] &quot;Big brown bat&quot;          &quot;Giant armadillo&quot;        &quot;Little brown bat&quot;      
+## [4] &quot;North American Opossum&quot; &quot;Thick-tailed opposum&quot;</code></pre>
 </div>
 <div id="push-your-final-code-to-github" class="section level2">
 <h2>Push your final code to GitHub</h2>
