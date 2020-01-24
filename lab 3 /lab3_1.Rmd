@@ -1,7 +1,8 @@
 ---
 title: "Importing Data and Dplyr: `filter()`"
 output:
-  html_document:
+  html_document: 
+    keep_md: yes
     theme: spacelab
     toc: yes
     toc_float: yes
@@ -17,9 +18,10 @@ output:
 
 ## Review
 At this point, I expect that you have familiarity in RStudio, GitHub, and basic operations in R. You understand how to do arithmetic, assign values to objects, and work with vectors or data matrices. If you are confused or need some extra help, please [email me](mailto: jmledford@ucdavis.edu).  
+# changes size, make sure there is space between chunks, see email example above
 
 ## Load the tidyverse
-```{r message=FALSE, warning=FALSE}
+```{r}
 library("tidyverse")
 ```
 
@@ -87,6 +89,9 @@ glimpse(fish)
 
 ## Practice
 1. Load the data `mammal_lifehistories_v2.csv` and place it into a new object called `mammals`.
+```{r}
+mammals <- readr::read_csv("data/mammal_lifehistories_v2.csv")
+```
 
 2. Provide the dimensions of the data frame.
 
@@ -147,18 +152,33 @@ filter(fish, length == 167 & length == 175)
 
 ## Practice
 1. Filter the `fish` data to include the samples from lake `DY`.
+```{r}
+filter(fish, lakeid == "DY")
+```
 
 
 2. Filter the data to include all lakes except AL.
+```{r}
+filter(fish, lakeid != "AL")
+```
 
 
 3. Filter the data to include all lakes except AL and DY.
+```{r}
+filter(fish, lakeid != "AL"& lakeid != "DL")
+```
 
 
 4. Filter the data to include all fish with a scale length greater than or equal to 11.
+```{r}
+filter(fish, scalelength >= 11)
+```
 
 
 5. Filter the data to include fish only from lake AL and with a scalelength greater than or equal to 2 and less than or equal to 4.
+```{r}
+filter(fish, lakeid == "AL" & scalelength >=2 & scalelength <=4)
+```
 
 
 ## That's it, let's take a break!   

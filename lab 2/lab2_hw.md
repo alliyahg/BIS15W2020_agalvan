@@ -1,6 +1,6 @@
 ---
 title: "Lab 2 Homework"
-author: "Joel Ledford"
+author: "Alliyah Galvan"
 date: "Winter 2020"
 output:
   html_document: 
@@ -181,6 +181,7 @@ sleep[,1]
 ## 10 Roe deer                  
 ## # <U+2026> with 73 more rows
 ```
+
 
 ```r
 sleep[1,]
