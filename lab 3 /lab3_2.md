@@ -374,6 +374,30 @@ Note that if we had called our new variable length, R would overwrite the old va
 ## Practice
 1. Use `mutate()` to calculate the half length of each fish: length_half = length/2. Select only fish_id, length, and length_half, use pipes.
 
+
+```r
+fish %>% 
+  mutate(length_half = length/2) %>% 
+  select(fish_id, length, length_half)
+```
+
+```
+## # A tibble: 4,033 x 3
+##    fish_id length length_half
+##      <dbl>  <dbl>       <dbl>
+##  1     299    167        83.5
+##  2     299    167        83.5
+##  3     299    167        83.5
+##  4     300    175        87.5
+##  5     300    175        87.5
+##  6     300    175        87.5
+##  7     300    175        87.5
+##  8     301    194        97  
+##  9     301    194        97  
+## 10     301    194        97  
+## # <U+2026> with 4,023 more rows
+```
+
 ## That's it, let's take a break!   
 
 -->[Home](https://jmledford3115.github.io/datascibiol/)

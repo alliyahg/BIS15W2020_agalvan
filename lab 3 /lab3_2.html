@@ -1819,6 +1819,23 @@ fish2</code></pre>
 <ol style="list-style-type: decimal">
 <li>Use <code>mutate()</code> to calculate the half length of each fish: length_half = length/2. Select only fish_id, length, and length_half, use pipes.</li>
 </ol>
+<pre class="r"><code>fish %&gt;% 
+  mutate(length_half = length/2) %&gt;% 
+  select(fish_id, length, length_half)</code></pre>
+<pre><code>## # A tibble: 4,033 x 3
+##    fish_id length length_half
+##      &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;
+##  1     299    167        83.5
+##  2     299    167        83.5
+##  3     299    167        83.5
+##  4     300    175        87.5
+##  5     300    175        87.5
+##  6     300    175        87.5
+##  7     300    175        87.5
+##  8     301    194        97  
+##  9     301    194        97  
+## 10     301    194        97  
+## # &lt;U+2026&gt; with 4,023 more rows</code></pre>
 </div>
 <div id="thats-it-lets-take-a-break" class="section level2">
 <h2>That’s it, let’s take a break!</h2>
