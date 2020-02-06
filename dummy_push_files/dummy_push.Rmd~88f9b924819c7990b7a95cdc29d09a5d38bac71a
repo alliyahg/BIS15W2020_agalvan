@@ -1,8 +1,10 @@
 ---
 title: "Dummy Push"
-author: "Your Name"
+author: "Alliyah  Galvan"
 date: "1/10/2020"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -10,6 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Install Packages
+```{r}
+```
+
+
 ```{r}
 options(repos = c(CRAN = "http://cran.rstudio.com"))
 #install.packages("tidyverse")
@@ -30,6 +36,9 @@ sessionInfo()
 ```{r}
 library(nycflights13)
 library(tidyverse)
+```
+```{r}
+install.packages("rlang", type = "source")
 ```
 
 ## nycflights13
