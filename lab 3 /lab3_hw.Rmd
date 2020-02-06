@@ -1,0 +1,140 @@
+---
+title: "Lab 3 Homework"
+author: "Alliyah Galvan"
+date: "Winter 2020"
+output:
+  html_document: 
+    keep_md: yes
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+Answer the following questions and complete the exercises in RMarkdown. Please embed all of your code and push your final work to your repository. Your final lab report should be organized, clean, and run free from errors. Remember, you must remove the `#` for the included code chunks to run.  
+
+## Load the tidyverse
+```{r}
+library(tidyverse)
+```
+
+## Data
+For the homework, we will use data about vertebrate home range sizes. The data are in the class folder, but the reference is below.  
+
+**Database of vertebrate home range sizes.**  
+Reference: Tamburello N, Cote IM, Dulvy NK (2015) Energy and the scaling of animal space use. The American Naturalist 186(2):196-211. http://dx.doi.org/10.1086/682070.  
+Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1  
+
+1. Load the data into a new object called `homerange`.  
+```{r}
+homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
+```
+
+2. Use `spec()` to see the full details of the columns.  
+```{r}
+spec(homerange)
+```
+
+3. Explore the data. Show the dimensions, column names, classes for each variable, and a statistical summary. Keep these as separate code chunks.  
+
+```{r}
+dim(homerange)
+```
+
+```{r}
+colnames(homerange)
+```
+
+```{r}
+lapply(homerange, class)
+```
+
+```{r}
+summary(homerange)
+```
+
+4. Are there NA's in your data? Show the code that you would use to verify this, please.  
+
+```{r}
+anyNA(homerange)
+```
+**Yes there are NAs present.**
+
+5. Change the class of the variables `taxon` and `order` to factors and display their levels.  
+
+```{r}
+homerange$taxon <- as.factor(homerange$taxon)
+levels(homerange$taxon)
+```
+
+```{r}
+homerange$order <- as.factor(homerange$order)
+levels(homerange$order)
+```
+
+6. Make a new dataframe `deer` that is limited to the mean mass, log10 mass, family, genus, and species of deer in the database. The family for deer is cervidae. Arrange the data in descending order by log10 mass. Which is the largest deer?  
+
+```{r}
+deer <- data.frame(homerange) %>% 
+  select(mean.mass.g, log10.mass, family, genus, species)%>%
+  filter(family == "cervidae") %>% 
+  arrange(desc(log10.mass))
+deer
+```
+**The largest deer is the Alces Alces at an average 307227.44 grams.**
+
+7. As measured by the data, which snake species has the smallest homerange? Show all of your work, please. Look this species up online and tell me about it!  
+
+```{r}
+smallest <- homerange %>% 
+  filter(taxon == "snakes") %>% 
+  arrange(mean.hra.m2)
+smallest
+```
+**The Namaqua dwarf Adder also known as Bitis Schneideri has the smallest homerange. According to the African Snakebite Institute, this is the smallest adder in the world at an average length of 20cm. Females produce around 3-7 offspring, each measuring 11-13 cm in length. It is preyed upon by many animals, however, the largest threat comes from habitat destruction and illegal pet trading practices. The Namaqua Dwarf Adder is mainly active in the early evenings and at night and its venom is midly cytotoxic which causes pain and swelling. Luckily antivenom is not required once bit (it's also not effective).**
+
+8. You suspect that homerange and mass are correlated in birds. We need a ratio that facilitates exploration of this prediction. First, build a new dataframe called `hra_ratio` that is limited to genus, species, mean.mass.g, log10.mass, log10.hra. Arrange it in ascending order by mean mass in grams.  
+```{r}
+hra_ratio <- data.frame(homerange) %>% 
+  filter(taxon == "birds") %>% 
+  select(genus, species, mean.mass.g, log10.mass, log10.hra)%>%
+  arrange(mean.mass.g)
+hra_ratio
+```
+
+
+9. Replace the existing `hra_ratio` dataframe with a new dataframe that adds a column calculating the ratio of log 10 hra to log 10 mass. Call it `hra.mass.ratio`. Arrange it in descending order by mean mass in grams. 
+
+```{r}
+new_hra_ratio <- data.frame(hra_ratio) %>% 
+  mutate (hra.mass.ratio=log10.hra/log10.mass) %>% 
+  arrange (desc(mean.mass.g))
+new_hra_ratio
+```
+
+10. What is the lowest mass for birds with a `hra.mass.ratio` greater than or equal to 4.0?
+
+```{r}
+new_hra_ratio %>% 
+  filter(hra.mass.ratio >=4.0) %>% 
+  arrange(mean.mass.g)
+```
+**The lowest mass in grams is from the bird Regulus regulus.**
+
+11. Do a search online; what is the common name of the bird from #10 above? Place a link in your markdown file that takes us to a webpage with information on its biology.  
+
+**For #10 the common name for Regulus regulus is the "Goldcrest". More information about this bird can be found [here](https://en.wikipedia.org/wiki/Goldcrest).**
+
+12. What is the `hra.mass.ratio` for an ostrich? Show your work, please.  
+
+```{r}
+homerange %>% 
+  filter(taxon == "birds" & common.name == "ostrich") %>% 
+  mutate(hra.mass.ratio=log10.hra/log10.mass) %>% 
+  select(taxon, common.name,log10.hra, log10.mass, hra.mass.ratio )
+```
+
+## Push your final code to GitHub!
+Please be sure that you have check the `keep md` file in the knit preferences.  

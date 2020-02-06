@@ -9,7 +9,7 @@ output:
 ---
 
 ## Instructions
-Answer the following questions and complete the exercises in RMarkdown. Please embed all of your code, keep track of your versions using git, and push your final work to our [GitHub repository](https://github.com/FRS417-DataScienceBiologists). I will randomly select a few examples of student work at the start of each session to use as examples so be sure that your code is working to the best of your ability.  
+Answer the following questions and complete the exercises in RMarkdown. Please embed all of your code and push your final work to your repository. Your final lab report should be organized, clean, and run free from errors. Remember, you must remove the `#` for the included code chunks to run.  
 
 1. Navigate to the R console and calculate the following expressions.  
   + 5 - 3 * 2  
@@ -45,13 +45,11 @@ blackjack <- c(140, -20, 70, -120, 240, NA, NA)
 roulette <- c(60, 50, 120, -300, 10, NA, NA)
 anyNA(blackjack)
 anyNA(roulette)
-
 ```
 
 a. Build a new vector called `days` for the days of the week. 
 ```{r}
 days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-
 ```
 
 
@@ -83,7 +81,6 @@ Monday, Wednesday, and Fridays were lucky for me. Thursdays were unlucky for me.
 ```{r}
 total_week <- c(blackjack, roulette)
 total_week>=0
-
 ```
 
 
@@ -94,5 +91,5 @@ I should stick to blackjack, even though I had luckier days while playing roulet
 sum(blackjack[1:5]) > sum(roulette[1:5])
 ```
 
-
-## Push your final code to GitHub
+## Push your final code to GitHub!
+Please be sure that you check the `keep md` file in the knit preferences.  

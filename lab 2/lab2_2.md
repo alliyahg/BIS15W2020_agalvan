@@ -383,11 +383,11 @@ mean(t)
 5. What is the class of the scientist column? Use the `levels()` command to see all the unique levels.  
 
 ```r
-levels(spring)
+levels(hsprings$scientist)
 ```
 
 ```
-## NULL
+## [1] "Jill"  "Steve" "Susan"
 ```
 
 
