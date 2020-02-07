@@ -1,11 +1,11 @@
 ---
 title: "Lab 4 Homework"
-author: "Please Add Your Name Here"
-date: "Please Add the Date Here"
+author: "Alliyah Galvan"
+date: "02/07/2020"
 output:
-  html_document:
+  html_document: 
+    keep_md: yes
     theme: spacelab
-    toc: no
 ---
 
 ```{r setup, include=FALSE}
@@ -23,18 +23,45 @@ library(tidyverse)
 For this assignment we are going to work with a large dataset from the [United Nations Food and Agriculture Organization](http://www.fao.org/about/en/) on world fisheries. First, load the data.  
 
 1. Load the data `FAO_1950to2012_111914.csv` as a new object titled `fisheries`.
+```{r}
+fisheries <- readr::read_csv("data lab 4/FAO_1950to2012_111914.csv")
+```
+```{r}
+fisheries
+```
 
 
 2. What are the names of the columns? Do you see any potential problems with the column names?
-
+```{r}
+colnames(fisheries)
+```
+**Yes I see an error with the column names because the years should be part of the data set and used as variables**
 
 3. What is the structure of the data? Show the classes of each variable.
+```{r}
+str(fisheries)
+```
 
+```{r}
+lapply(fisheries, class)
+```
 
 4. Think about the classes. Will any present problems? Make any changes you think are necessary below.
+```{r}
 
+```
+
+```{r}
+real_titles <- c(1:8)
+fisheries[,real_titles] <- lapply(fisheries[,real_titles], as.factor)
+lapply(fisheries, class)
+
+```
+
+**Yes, character classes will cause problems**
 
 5. How many countries are represented in the data? Provide a count.
+
 
 
 6. What are the names of the countries?
@@ -80,4 +107,4 @@ For this assignment we are going to work with a large dataset from the [United N
 17. Use the data to do at least one exploratory analysis of your choice. What can you learn?
 
 ## Push your final code to GitHub!
-Please be sure that you check the `keep md` file in the knit preferences.   
+Please be sure that you check the `keep md` file in the knit preferences.
