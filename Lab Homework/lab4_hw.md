@@ -185,59 +185,223 @@ sapply(fisheries, class)
 
 ```r
 real_titles<- c(1,2,4:6,8)
-fisheries[,real_titles] <- sapply(fisheries[,real_titles], as.factor)
-sapply(fisheries, class)
+fisheries[,real_titles] <- lapply(fisheries[,real_titles], as.factor)
+lapply(fisheries, class)
 ```
 
 ```
-##                 Country             Common name          ISSCAAP group# 
-##             "character"             "character"               "numeric" 
-## ISSCAAP taxonomic group          ASFIS species#      ASFIS species name 
-##             "character"             "character"             "character" 
-##  FAO major fishing area                 Measure                    1950 
-##               "numeric"             "character"             "character" 
-##                    1951                    1952                    1953 
-##             "character"             "character"             "character" 
-##                    1954                    1955                    1956 
-##             "character"             "character"             "character" 
-##                    1957                    1958                    1959 
-##             "character"             "character"             "character" 
-##                    1960                    1961                    1962 
-##             "character"             "character"             "character" 
-##                    1963                    1964                    1965 
-##             "character"             "character"             "character" 
-##                    1966                    1967                    1968 
-##             "character"             "character"             "character" 
-##                    1969                    1970                    1971 
-##             "character"             "character"             "character" 
-##                    1972                    1973                    1974 
-##             "character"             "character"             "character" 
-##                    1975                    1976                    1977 
-##             "character"             "character"             "character" 
-##                    1978                    1979                    1980 
-##             "character"             "character"             "character" 
-##                    1981                    1982                    1983 
-##             "character"             "character"             "character" 
-##                    1984                    1985                    1986 
-##             "character"             "character"             "character" 
-##                    1987                    1988                    1989 
-##             "character"             "character"             "character" 
-##                    1990                    1991                    1992 
-##             "character"             "character"             "character" 
-##                    1993                    1994                    1995 
-##             "character"             "character"             "character" 
-##                    1996                    1997                    1998 
-##             "character"             "character"             "character" 
-##                    1999                    2000                    2001 
-##             "character"             "character"             "character" 
-##                    2002                    2003                    2004 
-##             "character"             "character"             "character" 
-##                    2005                    2006                    2007 
-##             "character"             "character"             "character" 
-##                    2008                    2009                    2010 
-##             "character"             "character"             "character" 
-##                    2011                    2012 
-##             "character"             "character"
+## $Country
+## [1] "factor"
+## 
+## $`Common name`
+## [1] "factor"
+## 
+## $`ISSCAAP group#`
+## [1] "numeric"
+## 
+## $`ISSCAAP taxonomic group`
+## [1] "factor"
+## 
+## $`ASFIS species#`
+## [1] "factor"
+## 
+## $`ASFIS species name`
+## [1] "factor"
+## 
+## $`FAO major fishing area`
+## [1] "numeric"
+## 
+## $Measure
+## [1] "factor"
+## 
+## $`1950`
+## [1] "character"
+## 
+## $`1951`
+## [1] "character"
+## 
+## $`1952`
+## [1] "character"
+## 
+## $`1953`
+## [1] "character"
+## 
+## $`1954`
+## [1] "character"
+## 
+## $`1955`
+## [1] "character"
+## 
+## $`1956`
+## [1] "character"
+## 
+## $`1957`
+## [1] "character"
+## 
+## $`1958`
+## [1] "character"
+## 
+## $`1959`
+## [1] "character"
+## 
+## $`1960`
+## [1] "character"
+## 
+## $`1961`
+## [1] "character"
+## 
+## $`1962`
+## [1] "character"
+## 
+## $`1963`
+## [1] "character"
+## 
+## $`1964`
+## [1] "character"
+## 
+## $`1965`
+## [1] "character"
+## 
+## $`1966`
+## [1] "character"
+## 
+## $`1967`
+## [1] "character"
+## 
+## $`1968`
+## [1] "character"
+## 
+## $`1969`
+## [1] "character"
+## 
+## $`1970`
+## [1] "character"
+## 
+## $`1971`
+## [1] "character"
+## 
+## $`1972`
+## [1] "character"
+## 
+## $`1973`
+## [1] "character"
+## 
+## $`1974`
+## [1] "character"
+## 
+## $`1975`
+## [1] "character"
+## 
+## $`1976`
+## [1] "character"
+## 
+## $`1977`
+## [1] "character"
+## 
+## $`1978`
+## [1] "character"
+## 
+## $`1979`
+## [1] "character"
+## 
+## $`1980`
+## [1] "character"
+## 
+## $`1981`
+## [1] "character"
+## 
+## $`1982`
+## [1] "character"
+## 
+## $`1983`
+## [1] "character"
+## 
+## $`1984`
+## [1] "character"
+## 
+## $`1985`
+## [1] "character"
+## 
+## $`1986`
+## [1] "character"
+## 
+## $`1987`
+## [1] "character"
+## 
+## $`1988`
+## [1] "character"
+## 
+## $`1989`
+## [1] "character"
+## 
+## $`1990`
+## [1] "character"
+## 
+## $`1991`
+## [1] "character"
+## 
+## $`1992`
+## [1] "character"
+## 
+## $`1993`
+## [1] "character"
+## 
+## $`1994`
+## [1] "character"
+## 
+## $`1995`
+## [1] "character"
+## 
+## $`1996`
+## [1] "character"
+## 
+## $`1997`
+## [1] "character"
+## 
+## $`1998`
+## [1] "character"
+## 
+## $`1999`
+## [1] "character"
+## 
+## $`2000`
+## [1] "character"
+## 
+## $`2001`
+## [1] "character"
+## 
+## $`2002`
+## [1] "character"
+## 
+## $`2003`
+## [1] "character"
+## 
+## $`2004`
+## [1] "character"
+## 
+## $`2005`
+## [1] "character"
+## 
+## $`2006`
+## [1] "character"
+## 
+## $`2007`
+## [1] "character"
+## 
+## $`2008`
+## [1] "character"
+## 
+## $`2009`
+## [1] "character"
+## 
+## $`2010`
+## [1] "character"
+## 
+## $`2011`
+## [1] "character"
+## 
+## $`2012`
+## [1] "character"
 ```
 
 **Yes, character classes will cause problems**
@@ -250,7 +414,7 @@ nlevels(fisheries$Country)
 ```
 
 ```
-## [1] 0
+## [1] 204
 ```
 
 
@@ -261,7 +425,108 @@ levels(fisheries$Country)
 ```
 
 ```
-## NULL
+##   [1] "Albania"                   "Algeria"                  
+##   [3] "American Samoa"            "Angola"                   
+##   [5] "Anguilla"                  "Antigua and Barbuda"      
+##   [7] "Argentina"                 "Aruba"                    
+##   [9] "Australia"                 "Bahamas"                  
+##  [11] "Bahrain"                   "Bangladesh"               
+##  [13] "Barbados"                  "Belgium"                  
+##  [15] "Belize"                    "Benin"                    
+##  [17] "Bermuda"                   "Bonaire/S.Eustatius/Saba" 
+##  [19] "Bosnia and Herzegovina"    "Brazil"                   
+##  [21] "British Indian Ocean Ter"  "British Virgin Islands"   
+##  [23] "Brunei Darussalam"         "Bulgaria"                 
+##  [25] "C<f4>te d'Ivoire"          "Cabo Verde"               
+##  [27] "Cambodia"                  "Cameroon"                 
+##  [29] "Canada"                    "Cayman Islands"           
+##  [31] "Channel Islands"           "Chile"                    
+##  [33] "China"                     "China, Hong Kong SAR"     
+##  [35] "China, Macao SAR"          "Colombia"                 
+##  [37] "Comoros"                   "Congo, Dem. Rep. of the"  
+##  [39] "Congo, Republic of"        "Cook Islands"             
+##  [41] "Costa Rica"                "Croatia"                  
+##  [43] "Cuba"                      "Cura<e7>ao"               
+##  [45] "Cyprus"                    "Denmark"                  
+##  [47] "Djibouti"                  "Dominica"                 
+##  [49] "Dominican Republic"        "Ecuador"                  
+##  [51] "Egypt"                     "El Salvador"              
+##  [53] "Equatorial Guinea"         "Eritrea"                  
+##  [55] "Estonia"                   "Ethiopia"                 
+##  [57] "Falkland Is.(Malvinas)"    "Faroe Islands"            
+##  [59] "Fiji, Republic of"         "Finland"                  
+##  [61] "France"                    "French Guiana"            
+##  [63] "French Polynesia"          "French Southern Terr"     
+##  [65] "Gabon"                     "Gambia"                   
+##  [67] "Georgia"                   "Germany"                  
+##  [69] "Ghana"                     "Gibraltar"                
+##  [71] "Greece"                    "Greenland"                
+##  [73] "Grenada"                   "Guadeloupe"               
+##  [75] "Guam"                      "Guatemala"                
+##  [77] "Guinea"                    "GuineaBissau"             
+##  [79] "Guyana"                    "Haiti"                    
+##  [81] "Honduras"                  "Iceland"                  
+##  [83] "India"                     "Indonesia"                
+##  [85] "Iran (Islamic Rep. of)"    "Iraq"                     
+##  [87] "Ireland"                   "Isle of Man"              
+##  [89] "Israel"                    "Italy"                    
+##  [91] "Jamaica"                   "Japan"                    
+##  [93] "Jordan"                    "Kenya"                    
+##  [95] "Kiribati"                  "Korea, Dem. People's Rep" 
+##  [97] "Korea, Republic of"        "Kuwait"                   
+##  [99] "Latvia"                    "Lebanon"                  
+## [101] "Liberia"                   "Libya"                    
+## [103] "Lithuania"                 "Madagascar"               
+## [105] "Malaysia"                  "Maldives"                 
+## [107] "Malta"                     "Marshall Islands"         
+## [109] "Martinique"                "Mauritania"               
+## [111] "Mauritius"                 "Mayotte"                  
+## [113] "Mexico"                    "Micronesia, Fed.States of"
+## [115] "Monaco"                    "Montenegro"               
+## [117] "Montserrat"                "Morocco"                  
+## [119] "Mozambique"                "Myanmar"                  
+## [121] "Namibia"                   "Nauru"                    
+## [123] "Netherlands"               "Netherlands Antilles"     
+## [125] "New Caledonia"             "New Zealand"              
+## [127] "Nicaragua"                 "Nigeria"                  
+## [129] "Niue"                      "Norfolk Island"           
+## [131] "Northern Mariana Is."      "Norway"                   
+## [133] "Oman"                      "Other nei"                
+## [135] "Pakistan"                  "Palau"                    
+## [137] "Palestine, Occupied Tr."   "Panama"                   
+## [139] "Papua New Guinea"          "Peru"                     
+## [141] "Philippines"               "Pitcairn Islands"         
+## [143] "Poland"                    "Portugal"                 
+## [145] "Puerto Rico"               "Qatar"                    
+## [147] "R<e9>union"                "Romania"                  
+## [149] "Russian Federation"        "Saint Barth<e9>lemy"      
+## [151] "Saint Helena"              "Saint Kitts and Nevis"    
+## [153] "Saint Lucia"               "Saint Vincent/Grenadines" 
+## [155] "SaintMartin"               "Samoa"                    
+## [157] "Sao Tome and Principe"     "Saudi Arabia"             
+## [159] "Senegal"                   "Serbia and Montenegro"    
+## [161] "Seychelles"                "Sierra Leone"             
+## [163] "Singapore"                 "Sint Maarten"             
+## [165] "Slovenia"                  "Solomon Islands"          
+## [167] "Somalia"                   "South Africa"             
+## [169] "Spain"                     "Sri Lanka"                
+## [171] "St. Pierre and Miquelon"   "Sudan"                    
+## [173] "Sudan (former)"            "Suriname"                 
+## [175] "Svalbard and Jan Mayen"    "Sweden"                   
+## [177] "Syrian Arab Republic"      "Taiwan Province of China" 
+## [179] "Tanzania, United Rep. of"  "Thailand"                 
+## [181] "TimorLeste"                "Togo"                     
+## [183] "Tokelau"                   "Tonga"                    
+## [185] "Trinidad and Tobago"       "Tunisia"                  
+## [187] "Turkey"                    "Turks and Caicos Is."     
+## [189] "Tuvalu"                    "US Virgin Islands"        
+## [191] "Ukraine"                   "Un. Sov. Soc. Rep."       
+## [193] "United Arab Emirates"      "United Kingdom"           
+## [195] "United States of America"  "Uruguay"                  
+## [197] "Vanuatu"                   "Venezuela, Boliv Rep of"  
+## [199] "Viet Nam"                  "Wallis and Futuna Is."    
+## [201] "Western Sahara"            "Yemen"                    
+## [203] "Yugoslavia SFR"            "Zanzibar"
 ```
 
 
@@ -313,18 +578,18 @@ colnames(fisheries1)
 
 
 ```r
-fisheries_tidy <- fisheries1 %>% 
+fisheries_tidy <- fisheries1%>% 
   pivot_longer(-c("country", "commname" , "ASFIS_sciname" , "ASFIS_spcode", "ISSCAAP_spgroup", "ISSCAAP_spgroupname", "FAO_name", "unit"),
                names_to = "Year",
                values_to = "Catch",
-               values_drop_na= TRUE)
+               values_drop_na = TRUE)
 fisheries_tidy
 ```
 
 ```
 ## # A tibble: 376,771 x 10
 ##    country commname ISSCAAP_spgroup ISSCAAP_spgroup<U+2026> ASFIS_spcode ASFIS_sciname
-##    <chr>   <chr>              <dbl> <chr>            <chr>        <chr>        
+##    <fct>   <fct>              <dbl> <fct>            <fct>        <fct>        
 ##  1 Albania Angelsh<U+2026>              38 Sharks, rays, c<U+2026> 10903XXXXX   Squatinidae  
 ##  2 Albania Angelsh<U+2026>              38 Sharks, rays, c<U+2026> 10903XXXXX   Squatinidae  
 ##  3 Albania Angelsh<U+2026>              38 Sharks, rays, c<U+2026> 10903XXXXX   Squatinidae  
@@ -335,7 +600,7 @@ fisheries_tidy
 ##  8 Albania Angelsh<U+2026>              38 Sharks, rays, c<U+2026> 10903XXXXX   Squatinidae  
 ##  9 Albania Angelsh<U+2026>              38 Sharks, rays, c<U+2026> 10903XXXXX   Squatinidae  
 ## 10 Albania Angelsh<U+2026>              38 Sharks, rays, c<U+2026> 10903XXXXX   Squatinidae  
-## # <U+2026> with 376,761 more rows, and 4 more variables: FAO_name <dbl>, unit <chr>,
+## # <U+2026> with 376,761 more rows, and 4 more variables: FAO_name <dbl>, unit <fct>,
 ## #   Year <chr>, Catch <chr>
 ```
 
@@ -351,7 +616,7 @@ fisheries_tidy2
 ```
 ## # A tibble: 376,771 x 6
 ##    country ISSCAAP_spgroupname     ASFIS_spcode ASFIS_sciname Year  Catch
-##    <chr>   <chr>                   <chr>        <chr>         <chr> <chr>
+##    <fct>   <fct>                   <fct>        <fct>         <chr> <chr>
 ##  1 Albania Sharks, rays, chimaeras 10903XXXXX   Squatinidae   1995  0 0  
 ##  2 Albania Sharks, rays, chimaeras 10903XXXXX   Squatinidae   1996  53   
 ##  3 Albania Sharks, rays, chimaeras 10903XXXXX   Squatinidae   1997  20   
@@ -367,7 +632,7 @@ fisheries_tidy2
 
 
 10. Re-check the classes of `fisheries_tidy2`. Notice that "catch" is shown as a character! This is a problem because we will want to treat it as a numeric. How will you deal with this?
-
+**I have already set "Catch" as a numeric.**
 
 ```r
 fisheries_tidy2$Catch <- as.numeric(fisheries_tidy2$Catch)
@@ -378,10 +643,26 @@ fisheries_tidy2$Catch <- as.numeric(fisheries_tidy2$Catch)
 ```
 
 ```r
-class(fisheries_tidy2$Catch)
+lapply(fisheries_tidy2, class)
 ```
 
 ```
+## $country
+## [1] "factor"
+## 
+## $ISSCAAP_spgroupname
+## [1] "factor"
+## 
+## $ASFIS_spcode
+## [1] "factor"
+## 
+## $ASFIS_sciname
+## [1] "factor"
+## 
+## $Year
+## [1] "character"
+## 
+## $Catch
 ## [1] "numeric"
 ```
 
@@ -393,24 +674,24 @@ nlevels(fisheries_tidy2$ASFIS_spcode)
 ```
 
 ```
-## [1] 0
+## [1] 1553
 ```
 
 
 12. Which country had the largest overall catch in the year 2000?
 
 ```r
-fisheries_tidy2 %>% 
-   group_by(country) %>% 
-  filter(Year == "2000") %>% 
-   summarize(Catch = sum(Catch,na.rm = T)) %>%
-   arrange(desc(Catch))
+fisheries_tidy2 %>%
+  group_by(country) %>% 
+  filter(Year=="2000") %>% 
+  summarize(Catch = sum(Catch,na.rm =T)) %>% 
+  arrange(desc(Catch))
 ```
 
 ```
 ## # A tibble: 193 x 2
 ##    country                     Catch
-##    <chr>                       <dbl>
+##    <fct>                       <dbl>
 ##  1 Peru                     10625010
 ##  2 Japan                     4921013
 ##  3 United States of America  4692229
@@ -423,6 +704,7 @@ fisheries_tidy2 %>%
 ## 10 Iceland                   1982369
 ## # <U+2026> with 183 more rows
 ```
+
 **Country with the largest overall catch in the year 2000 was Peru**
 
 13. Which country caught the most sardines (_Sardina_) between the years 1990-2000?
@@ -437,9 +719,9 @@ fisheries_tidy2 %>%
 ```
 
 ```
-## # A tibble: 37 x 2
+## # A tibble: 204 x 2
 ##    country              Catch
-##    <chr>                <dbl>
+##    <fct>                <dbl>
 ##  1 Morocco            4785190
 ##  2 Spain              1425317
 ##  3 Russian Federation 1035139
@@ -450,7 +732,7 @@ fisheries_tidy2 %>%
 ##  8 Turkey              273565
 ##  9 France              263871
 ## 10 Denmark             242017
-## # <U+2026> with 27 more rows
+## # <U+2026> with 194 more rows
 ```
 **Morocco was the country that caught the most amount between 1990-2000**
 
@@ -466,9 +748,9 @@ fisheries_tidy2 %>%
 ```
 
 ```
-## # A tibble: 122 x 2
+## # A tibble: 204 x 2
 ##    country                    Catch
-##    <chr>                      <dbl>
+##    <fct>                      <dbl>
 ##  1 China                    4785139
 ##  2 Peru                     2274232
 ##  3 Korea, Republic of       1535454
@@ -479,7 +761,7 @@ fisheries_tidy2 %>%
 ##  8 Thailand                  603529
 ##  9 Taiwan Province of China  593638
 ## 10 Argentina                 587238
-## # <U+2026> with 112 more rows
+## # <U+2026> with 194 more rows
 ```
 **China caught the most cephalopods**
 
@@ -497,7 +779,7 @@ fisheries_tidy2 %>%
 ```
 ## # A tibble: 31 x 2
 ##    ASFIS_sciname           catch_total
-##    <chr>                         <dbl>
+##    <fct>                         <dbl>
 ##  1 Todarodes filippovae              1
 ##  2 Martialia hyadesi                 4
 ##  3 Moroteuthis ingens              194
@@ -524,7 +806,7 @@ coastal_fish
 ```
 ## # A tibble: 69,821 x 6
 ##    country ISSCAAP_spgroupname          ASFIS_spcode ASFIS_sciname Year  Catch
-##    <chr>   <chr>                        <chr>        <chr>         <chr> <dbl>
+##    <fct>   <fct>                        <fct>        <fct>         <chr> <dbl>
 ##  1 Albania Miscellaneous coastal fishes 1703926101   Boops boops   1983    559
 ##  2 Albania Miscellaneous coastal fishes 1703926101   Boops boops   1984    392
 ##  3 Albania Miscellaneous coastal fishes 1703926101   Boops boops   1985    406
@@ -539,6 +821,33 @@ coastal_fish
 ```
 
 17. Use the data to do at least one exploratory analysis of your choice. What can you learn?
+**I chose to discover which countries caught the most shrimp & prawn in the year 1999 in descending order.**
+
+```r
+fisheries_tidy2 %>%
+  filter(ISSCAAP_spgroupname == "Shrimps, prawns") %>%
+  filter(Year == 1999) %>%
+  group_by(country) %>%
+  summarize(shrimp_prawns_catch = sum(Catch,na.rm=T)) %>% 
+ arrange(desc(shrimp_prawns_catch))
+```
+
+```
+## # A tibble: 115 x 2
+##    country                  shrimp_prawns_catch
+##    <fct>                                  <dbl>
+##  1 India                                 336737
+##  2 Indonesia                             235621
+##  3 United States of America              137973
+##  4 Canada                                120005
+##  5 Viet Nam                               91500
+##  6 Malaysia                               90474
+##  7 Thailand                               84054
+##  8 Greenland                              79178
+##  9 Mexico                                 66491
+## 10 Norway                                 63538
+## # <U+2026> with 105 more rows
+```
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.
