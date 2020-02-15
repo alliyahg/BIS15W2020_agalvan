@@ -1,7 +1,8 @@
 ---
 title: "Data Visualization: `ggplot` part 2"
 output:
-  html_document:
+  html_document: 
+    keep_md: yes
     theme: spacelab
     toc: yes
     toc_float: yes
@@ -32,7 +33,8 @@ In the last lab you were introduced to `ggplot`. Let's build on this by explorin
 Reference: Tamburello N, Cote IM, Dulvy NK (2015) Energy and the scaling of animal space use. The American Naturalist 186(2):196-211. http://dx.doi.org/10.1086/682070.  
 Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1
 ```{r message=FALSE, warning=FALSE}
-homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
+homerange <- readr::read_csv("data lab 6 /Tamburelloetal_HomeRangeDatabase.csv")
+homerange
 ```
 
 Remember to be mindful of NAs in the data; know how they are represented and how R has interpreted them.
@@ -62,12 +64,39 @@ homerange %>%
 
 ## Practice
 1. There are more herbivores than carnivores in the homerange data, but how do their masses compare? Make a summary and boxplot that compares their masses. Use `log10.mass`.
+```{r}
+homerange %>% 
+  group_by(trophic.guild) %>%
+  summarize(min(log10.mass),
+            max(log10.mass),
+            mean(log10.mass),
+            median(log10.mass))
+```
 
+```{r}
+homerange %>% 
+  ggplot(aes(x = trophic.guild, y = log10.mass)) +
+  geom_boxplot()
+```
 
 2. Have a closer look at carnivorous mammals. Summarize and visualize the range of log10.mass by family.
+```{r}
+homerange %>% 
+  filter(taxon == "mammals" & trophic.guild == "carnivore") %>% 
+  group_by(family) %>%
+  summarize(min(log10.mass),
+            max(log10.mass),
+            mean(log10.mass),
+            median(log10.mass))
+```
 
 
-3. Now use a boxplot to visualize the range of body mass by family of carnivore.
+3. Now use a boxplot to visualize the range of body mass by family of carnivore. **COME BACK**
+```{r}
+homerange %>% 
+  ggplot(aes(x = family, y = log10.mass)) +
+  geom_boxplot()
+```
 
 
 ## Aesthetics: Labels
@@ -112,10 +141,21 @@ ggplot(data = homerange, mapping = aes(x = log10.mass, y = log10.hra)) +
 
 ## Practice
 1. Make a barplot that shows the number of individuals per locomotion type. Be sure to provide a title and label the axes appropriately.
+```{r}
+homerange %>% 
+  ggplot(aes(x= locomotion))+
+  geom_bar()+
+   labs(title = "Individuals per Locomotion",
+       x = "Locomotion type",
+       y = "n")+
+  theme(plot.title = element_text(size = 16, face = "italic"),
+        axis.text = element_text(size = 10),
+        axis.title = element_text(size = 11))
+```
 
 
 ## Other Aesthetics
-There are lots of options for aesthtics. An aesthetic can be assigned to either numeric or categorical data. `color` is a common option. Because color is included within the main `ggplot` command, it will color the points based on the category to which they belong and add a key.
+There are lots of options for aesthetics. An aesthetic can be assigned to either numeric or categorical data. `color` is a common option. Because color is included within the main `ggplot` command, it will color the points based on the category to which they belong and add a key.
 ```{r}
 homerange %>% 
   ggplot(aes(x = log10.mass, y = log10.hra, color = locomotion)) +
@@ -148,8 +188,22 @@ homerange %>%
 ## Practice
 1. Make a barplot that shows counts of ectotherms and endotherms. Label the axes, provide a title, and fill by thermoregulation type.
 
+**HELP:**
+homerange %>% 
+  ggplot(aes(x=thermoregulation, fill=thermoregulation)+
+  geom_bar(alpha=0.6)+
+  labs(title ="Thermoregulation",
+       x="Thermo Type",
+      y= NULL)
+
+
 
 2. Make a boxplot that compares thermoregulation type by log10.mass. Group and fill by class. Label the axes and provide a title.
+```{r}
+homerange %>% 
+  ggplot(aes(x=thermoregulation, y=log10.mass, fill=class))+
+  geom_boxplot(alpha=0.8)
+```
 
 
 ## That's it, let's take a break!   
