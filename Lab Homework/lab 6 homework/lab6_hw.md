@@ -90,8 +90,8 @@ gapminder %>%
   group_by(year) %>% 
   summarize(global_lifeExp = sum(lifeExp)) %>% 
   ggplot(aes(x = year, y = global_lifeExp)) +
-  geom_jitter() +
-  labs(title = "Global Life Expectancy 1952-2007 ",
+  geom_line() +
+  labs(title = "Global Life Expectancy (1952-2007) ",
        x = "Year",
        y = "Global Life Expectancy")+ 
  theme(plot.title = element_text(size = 18, face = "bold"),
@@ -113,7 +113,9 @@ gapminder %>%
   labs(title="Global Life Expectancy (1952 vs. 2007)",
        x= "Year",
        y="Life Expectancy") +
-  theme(plot.title = element_text(size = rel(1.5), hjust = 0.5))
+  theme(plot.title = element_text(size = 18, face = "bold"),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 12))
 ```
 
 ![](lab6_hw_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
@@ -146,16 +148,17 @@ gapminder %>%
 
 ```r
 gapminder %>% 
-  filter(year <= 2007 & year >= 1952) %>% 
-  group_by(continent) %>% 
-  ggplot(aes(x = year, y = lifeExp, color = continent)) + 
-  geom_line()+
-  labs(title = "Global life Expectancy 1952-2007",
-       x = "Year",
-       y = "Global Life Expectancy") + 
-  theme(plot.title = element_text(size = 15, face = "bold"),
-        axis.text = element_text(size = 10),
-        axis.title = element_text(size = 10))
+  group_by(year, continent) %>% 
+  summarize(mean_lifeExp=mean(lifeExp)) %>% 
+  ggplot(aes(x=year, y=mean_lifeExp, color=continent))+
+  geom_point() +
+  geom_line(alpha=.6) +
+  labs(title="Global Life Expectancy by Continent",
+       x= "Year",
+       y="Life Expectancy") +
+  theme(plot.title = element_text(size = 18, face = "bold"),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 12))
 ```
 
 ![](lab6_hw_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
@@ -163,18 +166,106 @@ gapminder %>%
 
 **6. We are interested in the relationship between per capita GDP and life expectancy; i.e. does having more money help you live longer?**
 
+```r
+gapminder %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()+
+  labs(title = "Relationship: GDP per capita & Life Expectancy",
+       x = "GDP Per Capita",
+       y = "Life Expectancy")+ 
+    theme(plot.title = element_text(size = 16, face = "bold"),
+        axis.text = element_text(size = 10),
+        axis.title = element_text(size = 12))
+```
+
+![](lab6_hw_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+**The realtionship is inconclusive because there is no evidence that having more money helps you live longer.**
 
 **7. There is extreme disparity in per capita GDP. Rescale the x axis to make this easier to interpret. How would you characterize the relationship?**
 
+```r
+gapminder %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()+
+    scale_x_log10() +
+  labs(title = "Relationship: GDP per capita & Life Expectancy",
+       x = "GDP Per Capita",
+       y = "Life Expectancy")+ 
+    theme(plot.title = element_text(size = 16, face = "bold"),
+        axis.text = element_text(size = 10),
+        axis.title = element_text(size = 12))+
+  geom_smooth(method=lm, se=T)
+```
+
+![](lab6_hw_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+**When rescaling x with a log base of 10, there is a clear pattern that life expectancy does increase at a linear slope with an increased GDP per capita.**
 
 **8. Which countries have had the largest population growth since 1952?**
 
+```r
+gapminder %>% 
+   filter(year >= 1952) %>% 
+  select(Country=country, year, pop) %>%
+  group_by(Country) %>% 
+  summarize(population_growth = last(pop)-first(pop)) %>% 
+  arrange(desc(population_growth))
+```
+
+```
+## # A tibble: 142 x 2
+##    Country       population_growth
+##    <fct>                     <int>
+##  1 China                 762419569
+##  2 India                 738396331
+##  3 United States         143586947
+##  4 Indonesia             141495000
+##  5 Brazil                133408087
+##  6 Pakistan              127924057
+##  7 Bangladesh            103561480
+##  8 Nigeria               101912068
+##  9 Mexico                 78556574
+## 10 Philippines            68638596
+## # <U+2026> with 132 more rows
+```
+**China has had the largest population growth since 1952.**
 
 **9. Use your results from the question above to plot population growth for the top five countries since 1952.**
+
+```r
+gapminder %>% 
+  filter(country == "China" | country == "India" | country == "United States" | country == "Indonesia" | country == "Brazil" ) %>% 
+  ggplot(aes(x = year, y = pop, color = country)) +
+  geom_line()+
+  geom_point() +
+  labs(title = "Top 5 Countries' Population Growth Since 1952",
+       x = "Year",
+       y = "Population")+ 
+   theme(plot.title = element_text(size = 15, face = "bold"),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 12))
+```
+
+![](lab6_hw_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 
 **10. How does per capita GDP growth compare between these same five countries?**
 
+```r
+gapminder %>% 
+  filter(country == "China" | country == "India" | country == "United States" | country == "Indonesia" | country == "Brazil" ) %>% 
+  ggplot(aes(x = year, y = gdpPercap, color = country)) +
+  geom_point() +
+  geom_line()+
+  labs(title = "Gdp per capita of Top 5 Largest Growing Countries since 1952",
+       x = "Year",
+       y = "GDP Per Capita")+ 
+  theme(plot.title = element_text(size = 11, face = "bold"),
+        axis.text = element_text(size = 9),
+        axis.title = element_text(size = 9))
+```
+
+![](lab6_hw_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+**USA takes the win.**
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences. 
