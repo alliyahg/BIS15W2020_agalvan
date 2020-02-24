@@ -36,14 +36,21 @@ The questions below are open-ended and have many possible solutions. Your approa
 ```{r}
 sapply(gapminder,class)
 ```
+
 ```{r}
 dim(gapminder)
 ```
+
 ```{r}
 colnames(gapminder)
 ```
+
 ```{r}
 summary(gapminder)
+```
+
+```{r}
+glimpse(gapminder) # this also  gives you a snapshot of variable classes
 ```
 
 **2. Among the interesting variables in gapminder is life expectancy. How has global life expectancy changed between 1952 and 2007?**
@@ -62,7 +69,6 @@ gapminder %>%
         axis.title = element_text(size = 12))
 ```
 
-
 **3. How do the distributions of life expectancy compare for the years 1952 and 2007? _Challenge: Can you put both distributions on a single plot?_**
 ```{r}
 gapminder %>%
@@ -78,7 +84,6 @@ gapminder %>%
         axis.title = element_text(size = 12))
 ```
 
-
 **4. Your answer above doesn't tell the whole story since life expectancy varies by region. Make a summary that shows the min, mean, and max life expectancy by continent for all years represented in the data.**
 ```{r}
 gapminder %>% 
@@ -89,15 +94,15 @@ gapminder %>%
   arrange(continent)
 ```
 
-
 **5. How has life expectancy changed between 1952-2007 for each continent? Try using `geom_line()` for this, including all continents on the same  plot.**
 ```{r}
 gapminder %>% 
+  mutate_at(vars(year), as.factor) %>% #by converting the year to a factor the x-axis is discrete
   group_by(year, continent) %>% 
-  summarize(mean_lifeExp=mean(lifeExp)) %>% 
-  ggplot(aes(x=year, y=mean_lifeExp, color=continent))+
-   geom_point() +
-  geom_line(alpha=.6) +
+  summarize(mean_lifeExp=mean(lifeExp))  %>% 
+  ggplot(aes(x=year, y=mean_lifeExp, color=continent, group=continent))+
+  geom_line() +
+  geom_point(alpha=0.8)+
   labs(title="Global Life Expectancy by Continent",
        x= "Year",
        y="Life Expectancy") +
@@ -150,17 +155,20 @@ gapminder %>%
 
 **9. Use your results from the question above to plot population growth for the top five countries since 1952.**
 ```{r}
+options(scipen = 999) #disables sci notation
 gapminder %>% 
+  mutate_at(vars(year), as.factor) %>% #by converting the year to a factor the x-axis is discrete 
   filter(country == "China" | country == "India" | country == "United States" | country == "Indonesia" | country == "Brazil" ) %>% 
-  ggplot(aes(x = year, y = pop, color = country)) +
+  ggplot(aes(x = year, y = pop, color = country, group=country)) +
   geom_line()+
   geom_point() +
   labs(title = "Top 5 Countries' Population Growth Since 1952",
        x = "Year",
        y = "Population")+ 
    theme(plot.title = element_text(size = 15, face = "bold"),
-        axis.text = element_text(size = 12),
-        axis.title = element_text(size = 12))
+        axis.text = element_text(size = 10),
+        axis.title = element_text(size = 12))+
+    scale_y_log10()
 ```
 
 
