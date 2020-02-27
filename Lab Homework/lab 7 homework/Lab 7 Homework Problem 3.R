@@ -4,7 +4,10 @@ library(tidyverse)
 library(shiny)
 library(shinydashboard)
 
-
+UC_admit <- readr::read_csv("data lab 7/UC_admit.csv")
+UC_admit %>% 
+  mutate_at(vars(Academic_Yr), as.factor) %>% 
+  mutate_at(vars(Ethnicity), as.factor)
 
 ui <- dashboardPage(
   dashboardHeader(title = "Ethnicity Data App"),
