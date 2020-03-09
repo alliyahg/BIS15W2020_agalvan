@@ -1,5 +1,5 @@
 ## BIS15W2020_agalvan
-## Alliyah Galvan :sunflower::capricorn::cyclone::cow:
+## Alliyah Galvan :capricorn::cyclone::cow::sunflower:
 
 BIS 15 repository, UC Davis, Winter 2020.
 
