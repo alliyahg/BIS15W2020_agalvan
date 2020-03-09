@@ -1,5 +1,5 @@
 ## BIS15W2020_agalvan
-## Alliyah Galvan
+## Alliyah Galvan :sunflower: :cow: :capricorn:
 
 BIS 15 repository, UC Davis, Winter 2020.
 
