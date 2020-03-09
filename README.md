@@ -3,6 +3,16 @@
 
 BIS 15 repository, UC Davis, Winter 2020.
 
+**Year:**
+> Third Year
+
+**Major:**
+> Animal Science
+  
+**Email:**
+> [angalvan@ucdavis.edu](mailto:angalvan@ucdavis.edu)
+
+
 **My repository includes folders for:**
   
  Labs: 1-9 (midterm optional)
