@@ -46,7 +46,7 @@ Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1
 1. Load the data into a new object called `homerange`.  
 
 ```r
-homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
+homerange <- readr::read_csv("data lab 3/Tamburelloetal_HomeRangeDatabase.csv")
 ```
 
 ```
